@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useLang } from "@/context/LanguageContext";
@@ -16,7 +16,6 @@ import { ScrollReveal, StaggerReveal, StaggerItem } from "@/components/ScrollRev
 import { QuantityStepper } from "@/components/QuantityStepper";
 import { parsePrice, generateItemId } from "@/lib/cart";
 import { orderCopy } from "@/data/order-copy";
-import { motion, AnimatePresence } from "framer-motion";
 
 type MenuView = "dine-in" | "takeaway";
 
@@ -71,11 +70,6 @@ export function MenuContent() {
   const { t, lang } = useLang();
   const searchParams = useSearchParams();
   const [view, setView] = useState<MenuView>("dine-in");
-  const [expandedRijsttafel, setExpandedRijsttafel] = useState<number | null>(
-    null
-  );
-  const rijsttafelRef = useRef<HTMLDivElement>(null);
-
   const [activeSection, setActiveSection] = useState<string>("rijsttafel");
 
   // Filter active monthly specials (needs to be above the observer useEffect)
@@ -127,23 +121,6 @@ export function MenuContent() {
       observer.disconnect();
     };
   }, [activeSpecials.length]);
-
-  const handleRijsttafelToggle = async (index: number) => {
-    if (expandedRijsttafel === index) {
-      setExpandedRijsttafel(null);
-      return;
-    }
-    // Serialize: collapse first, wait, then expand
-    if (expandedRijsttafel !== null) {
-      setExpandedRijsttafel(null);
-      await new Promise((r) => setTimeout(r, 350));
-    }
-    setExpandedRijsttafel(index);
-    setTimeout(() => {
-      const el = document.getElementById(`rijsttafel-${index}`);
-      el?.scrollIntoView({ behavior: "smooth", block: "center" });
-    }, 100);
-  };
 
   // Get the price to display based on current view
   const getPrice = (dineIn: string, takeaway: string | null) => {
@@ -208,13 +185,16 @@ export function MenuContent() {
         }}
       >
         <div
-          className="mx-auto px-6 flex items-center justify-between"
+          className="mx-auto px-6 flex items-center"
           style={{
             maxWidth: "var(--content-max-width)",
             height: "var(--menu-nav-height)",
           }}
         >
-          <div className="flex items-center gap-6 overflow-x-auto whitespace-nowrap flex-1 mr-4">
+          <div
+            className="flex items-center gap-6 overflow-x-auto whitespace-nowrap flex-1"
+            style={{ scrollbarWidth: "none" }}
+          >
             <a
               href="#rijsttafel"
               className="shrink-0 font-semibold uppercase transition-colors"
@@ -257,81 +237,27 @@ export function MenuContent() {
               </a>
             ))}
           </div>
-
-          {/* Toggle pill */}
-          <div
-            className="shrink-0 flex rounded-sm overflow-hidden border"
-            style={{ borderColor: "var(--color-rice-dark)" }}
-          >
-            <button
-              onClick={() => setView("dine-in")}
-              className="px-3 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center"
-              style={{
-                fontFamily: "var(--font-accent)",
-                minHeight: 44,
-                backgroundColor:
-                  view === "dine-in"
-                    ? "var(--color-daun)"
-                    : "transparent",
-                color:
-                  view === "dine-in"
-                    ? "var(--color-rice)"
-                    : "var(--color-kecap)",
-              }}
-            >
-              {t(menuCopy.toggleDineIn)}
-            </button>
-            <button
-              onClick={() => setView("takeaway")}
-              className="px-3 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center"
-              style={{
-                fontFamily: "var(--font-accent)",
-                minHeight: 44,
-                backgroundColor:
-                  view === "takeaway"
-                    ? "var(--color-daun)"
-                    : "transparent",
-                color:
-                  view === "takeaway"
-                    ? "var(--color-rice)"
-                    : "var(--color-kecap)",
-              }}
-            >
-              {t(menuCopy.toggleTakeaway)}
-            </button>
-          </div>
         </div>
       </nav>
 
       {/* Takeaway info banner */}
-      <AnimatePresence>
-        {view === "takeaway" && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden"
-          >
-            <div
-              className="text-center py-3 px-6"
-              style={{
-                backgroundColor: "var(--color-daun)",
-                color: "var(--color-rice)",
-                fontFamily: "var(--font-body)",
-                fontSize: "var(--text-body-sm)",
-              }}
-            >
-              {t(orderCopy.banner.takeaway)}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {view === "takeaway" && (
+        <div
+          className="text-center py-3 px-6"
+          style={{
+            backgroundColor: "var(--color-daun)",
+            color: "var(--color-rice)",
+            fontFamily: "var(--font-body)",
+            fontSize: "var(--text-body-sm)",
+          }}
+        >
+          {t(orderCopy.banner.takeaway)}
+        </div>
+      )}
 
       {/* Section 3: Rijsttafel Section */}
       <section
         id="rijsttafel"
-        ref={rijsttafelRef}
         className="relative overflow-hidden"
         style={{
           padding: "var(--section-space-main) 0",
@@ -381,8 +307,8 @@ export function MenuContent() {
             </p>
           </ScrollReveal>
 
-          {/* Rijsttafel accordion */}
-          <div className="space-y-3">
+          {/* Rijsttafel options */}
+          <div className="space-y-4">
             {RIJSTTAFEL_OPTIONS.map((option, i) => {
               const price =
                 view === "takeaway" && option.priceTakeaway
@@ -393,57 +319,45 @@ export function MenuContent() {
               if (view === "takeaway" && !option.priceTakeaway) return null;
 
               return (
-                <div
-                  key={option.name}
-                  id={`rijsttafel-${i}`}
-                  className="rounded-sm overflow-hidden border transition-colors"
-                  style={{
-                    borderColor:
-                      expandedRijsttafel === i
-                        ? "var(--color-kunyit)"
-                        : "rgba(245,240,232,0.15)",
-                    backgroundColor:
-                      expandedRijsttafel === i
-                        ? "rgba(245,240,232,0.08)"
-                        : "transparent",
-                  }}
-                >
-                  <button
-                    onClick={() => handleRijsttafelToggle(i)}
-                    className="w-full flex items-center justify-between px-5 py-4 text-left"
-                    aria-expanded={expandedRijsttafel === i}
+                <ScrollReveal key={option.name} delay={0.06 * i}>
+                  <div
+                    className="rounded-sm overflow-hidden border px-5 py-4"
+                    style={{
+                      borderColor: "rgba(245,240,232,0.15)",
+                    }}
                   >
-                    <div className="flex items-center gap-3">
-                      <span
-                        style={{
-                          fontFamily: "var(--font-display)",
-                          fontSize: "var(--text-h4)",
-                          fontWeight: 500,
-                          color: "var(--color-rice)",
-                        }}
-                      >
-                        {option.name}
-                      </span>
-                      {option.vegetarian && (
-                        <svg aria-label="Vegetarisch" width="14" height="14" viewBox="0 0 24 24" fill="var(--color-daun)" style={{ display: "inline-block", verticalAlign: "middle" }}><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75" /></svg>
-                      )}
-                      {option.flagship && (
+                    <div className="flex items-center justify-between gap-3 mb-2">
+                      <div className="flex items-center gap-3">
                         <span
-                          className="px-2 py-0.5 rounded-sm text-xs uppercase"
                           style={{
-                            backgroundColor: "var(--color-kunyit)",
-                            color: "var(--color-kecap)",
-                            fontFamily: "var(--font-accent)",
-                            letterSpacing: "var(--tracking-caps)",
-                            fontWeight: 600,
+                            fontFamily: "var(--font-display)",
+                            fontSize: "var(--text-h4)",
+                            fontWeight: 500,
+                            color: "var(--color-rice)",
                           }}
                         >
-                          {lang === "nl" ? "Vlaggenschip" : "Flagship"}
+                          {option.name}
                         </span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-3">
+                        {option.vegetarian && (
+                          <svg aria-label="Vegetarisch" width="14" height="14" viewBox="0 0 24 24" fill="var(--color-daun)" style={{ display: "inline-block", verticalAlign: "middle" }}><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75" /></svg>
+                        )}
+                        {option.flagship && (
+                          <span
+                            className="px-2 py-0.5 rounded-sm text-xs uppercase"
+                            style={{
+                              backgroundColor: "var(--color-kunyit)",
+                              color: "var(--color-kecap)",
+                              fontFamily: "var(--font-accent)",
+                              letterSpacing: "var(--tracking-caps)",
+                              fontWeight: 600,
+                            }}
+                          >
+                            {lang === "nl" ? "Vlaggenschip" : "Flagship"}
+                          </span>
+                        )}
+                      </div>
                       <span
+                        className="shrink-0"
                         style={{
                           fontFamily: "var(--font-accent)",
                           fontSize: "var(--text-body)",
@@ -453,79 +367,45 @@ export function MenuContent() {
                       >
                         {price}
                       </span>
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="var(--color-rice)"
-                        strokeWidth="2"
-                        className="transition-transform duration-300"
-                        style={{
-                          transform:
-                            expandedRijsttafel === i
-                              ? "rotate(180deg)"
-                              : "none",
-                        }}
-                      >
-                        <polyline points="6 9 12 15 18 9" />
-                      </svg>
                     </div>
-                  </button>
-
-                  <AnimatePresence>
-                    {expandedRijsttafel === i && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{
-                          duration: 0.35,
-                          ease: [0.25, 0.1, 0.25, 1],
+                    <p
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "var(--text-body-sm)",
+                        lineHeight: "var(--leading-body)",
+                        color: "var(--color-rice)",
+                        opacity: 0.8,
+                        margin: 0,
+                      }}
+                    >
+                      {t(option.desc)}
+                    </p>
+                    {view === "takeaway" && option.takeawayNote && (
+                      <p
+                        className="mt-2"
+                        style={{
+                          fontFamily: "var(--font-accent)",
+                          fontSize: "var(--text-caption)",
+                          letterSpacing: "var(--tracking-caps)",
+                          color: "var(--color-kunyit)",
+                          opacity: 0.8,
                         }}
-                        className="overflow-hidden"
                       >
-                        <div className="px-5 pb-5">
-                          <p
-                            style={{
-                              fontFamily: "var(--font-body)",
-                              fontSize: "var(--text-body-sm)",
-                              lineHeight: "var(--leading-body)",
-                              color: "var(--color-rice)",
-                              opacity: 0.8,
-                            }}
-                          >
-                            {t(option.desc)}
-                          </p>
-                          {view === "takeaway" && option.takeawayNote && (
-                            <p
-                              className="mt-2"
-                              style={{
-                                fontFamily: "var(--font-accent)",
-                                fontSize: "var(--text-caption)",
-                                letterSpacing: "var(--tracking-caps)",
-                                color: "var(--color-kunyit)",
-                                opacity: 0.8,
-                              }}
-                            >
-                              {t(option.takeawayNote)}
-                            </p>
-                          )}
-                          {view === "takeaway" && option.priceTakeaway && (
-                            <div className="mt-3 flex justify-end">
-                              <QuantityStepper
-                                itemId={generateItemId("rijsttafel", option.name)}
-                                itemName={option.name}
-                                priceCents={parsePrice(option.priceTakeaway)}
-                                itemType="rijsttafel"
-                              />
-                            </div>
-                          )}
-                        </div>
-                      </motion.div>
+                        {t(option.takeawayNote)}
+                      </p>
                     )}
-                  </AnimatePresence>
-                </div>
+                    {view === "takeaway" && option.priceTakeaway && (
+                      <div className="mt-3 flex justify-end">
+                        <QuantityStepper
+                          itemId={generateItemId("rijsttafel", option.name)}
+                          itemName={option.name}
+                          priceCents={parsePrice(option.priceTakeaway)}
+                          itemType="rijsttafel"
+                        />
+                      </div>
+                    )}
+                  </div>
+                </ScrollReveal>
               );
             })}
           </div>
@@ -669,53 +549,12 @@ export function MenuContent() {
           <nav
             className="sticky"
             style={{
-              top: "80px",
+              top: "calc(var(--header-height-desktop) + var(--space-sm))",
               paddingTop: "var(--space-lg)",
               paddingBottom: "var(--space-lg)",
             }}
             aria-label="Menu categories"
           >
-            {/* Dine-in / Afhalen toggle */}
-            <div
-              className="flex rounded-sm overflow-hidden border mb-4"
-              style={{ borderColor: "var(--color-rice-dark)" }}
-            >
-              <button
-                onClick={() => setView("dine-in")}
-                className="flex-1 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors"
-                style={{
-                  fontFamily: "var(--font-accent)",
-                  backgroundColor:
-                    view === "dine-in"
-                      ? "var(--color-daun)"
-                      : "transparent",
-                  color:
-                    view === "dine-in"
-                      ? "var(--color-rice)"
-                      : "var(--color-kecap)",
-                }}
-              >
-                {t(menuCopy.toggleDineIn)}
-              </button>
-              <button
-                onClick={() => setView("takeaway")}
-                className="flex-1 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors"
-                style={{
-                  fontFamily: "var(--font-accent)",
-                  backgroundColor:
-                    view === "takeaway"
-                      ? "var(--color-daun)"
-                      : "transparent",
-                  color:
-                    view === "takeaway"
-                      ? "var(--color-rice)"
-                      : "var(--color-kecap)",
-                }}
-              >
-                {t(menuCopy.toggleTakeaway)}
-              </button>
-            </div>
-
             <ul className="space-y-1" style={{ listStyle: "none", padding: 0, margin: 0 }}>
               <li>
                 <a

@@ -1,18 +1,30 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { useLang } from "@/context/LanguageContext";
 import { cartItemCount, cartSubtotal, formatPrice } from "@/lib/cart";
 import { orderCopy } from "@/data/order-copy";
 
+const TAKEAWAY_ROUTES = ["/bestellen", "/bestellen/betalen", "/bestellen/bevestiging"];
+
 export function CartFab() {
   const { items, openDrawer, isDrawerOpen, lastAddedAt } = useCart();
   const { t } = useLang();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const count = cartItemCount(items);
   const total = cartSubtotal(items);
 
-  if (isDrawerOpen) return null;
+  // Only show on takeaway-related routes
+  const isTakeawayMenu =
+    pathname === "/menu" &&
+    (searchParams.get("view") === "afhalen" || searchParams.get("view") === "takeaway");
+  const isTakeawayRoute = TAKEAWAY_ROUTES.some((r) => pathname.startsWith(r));
+  const shouldShow = isTakeawayMenu || isTakeawayRoute;
+
+  if (isDrawerOpen || !shouldShow) return null;
 
   return (
     <AnimatePresence>
@@ -25,7 +37,7 @@ export function CartFab() {
           transition={{ type: "spring", damping: 20, stiffness: 300 }}
           onClick={openDrawer}
           aria-label={`${t(orderCopy.fab.label)} (${count})`}
-          className="fixed z-50 hidden md:flex items-center gap-3 rounded-full shadow-lg transition-shadow hover:shadow-xl"
+          className="fixed z-50 flex items-center gap-3 rounded-full shadow-lg transition-shadow hover:shadow-xl"
           style={{
             bottom: "var(--space-md)",
             right: "var(--space-md)",

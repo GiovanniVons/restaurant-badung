@@ -92,7 +92,9 @@ export default function RootLayout({
             <Footer />
 
             <CartDrawer />
-            <CartFab />
+            <Suspense>
+              <CartFab />
+            </Suspense>
           </CartProvider>
         </LanguageProvider>
       </body>
