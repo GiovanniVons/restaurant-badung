@@ -10,7 +10,7 @@ export function Footer() {
 
   return (
     <footer
-      className="pt-16 pb-0 max-md:pb-[calc(var(--bottom-bar-height)+env(safe-area-inset-bottom,0px))]"
+      className="pt-16 pb-0"
       style={{ backgroundColor: "var(--footer-bg)", color: "var(--footer-text)" }}
     >
       <div

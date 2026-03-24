@@ -32,17 +32,17 @@ export const footer = {
   quickLinks: {
     nl: [
       { label: "Menu", href: "/menu" },
-      { label: "Ons Verhaal", href: "/ons-verhaal" },
-      { label: "Catering", href: "/catering" },
-      { label: "Contact", href: "/reserveren" },
       { label: "Afhalen", href: "/menu?view=afhalen" },
+      { label: "Catering", href: "/catering" },
+      { label: "Ons Verhaal", href: "/ons-verhaal" },
+      { label: "Contact", href: "/reserveren" },
     ] as { label: string; href: string }[],
     en: [
       { label: "Menu", href: "/menu" },
-      { label: "Our Story", href: "/ons-verhaal" },
-      { label: "Catering", href: "/catering" },
-      { label: "Contact", href: "/reserveren" },
       { label: "Pickup", href: "/menu?view=afhalen" },
+      { label: "Catering", href: "/catering" },
+      { label: "Our Story", href: "/ons-verhaal" },
+      { label: "Contact", href: "/reserveren" },
     ] as { label: string; href: string }[],
   },
   legal: {

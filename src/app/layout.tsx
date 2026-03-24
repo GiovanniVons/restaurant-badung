@@ -6,7 +6,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { CartProvider } from "@/context/CartContext";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { MobileBottomBar } from "@/components/MobileBottomBar";
+
 import { AnnouncementBanner } from "@/components/AnnouncementBanner";
 import { RestaurantJsonLd } from "@/components/JsonLd";
 import { CartDrawer } from "@/components/CartDrawer";
@@ -90,7 +90,7 @@ export default function RootLayout({
             <Navbar />
             <main id="main-content" className="flex-1">{children}</main>
             <Footer />
-            <Suspense><MobileBottomBar /></Suspense>
+
             <CartDrawer />
             <CartFab />
           </CartProvider>

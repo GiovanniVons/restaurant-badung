@@ -481,7 +481,6 @@ export function ReserverenContent() {
         </div>
       </section>
 
-      <div className="md:hidden" style={{ height: "calc(var(--bottom-bar-height) + env(safe-area-inset-bottom, 0px))" }} />
     </div>
   );
 }

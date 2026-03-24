@@ -578,9 +578,6 @@ export function CheckoutContent() {
           </div>
         </form>
       </div>
-
-      {/* Mobile spacer for bottom bar */}
-      <div className="md:hidden" style={{ height: "calc(var(--bottom-bar-height) + env(safe-area-inset-bottom, 0px))" }} />
     </div>
   );
 }
