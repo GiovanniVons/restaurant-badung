@@ -1,0 +1,62 @@
+"use client";
+
+export default function Error({
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  return (
+    <section
+      className="flex flex-col items-center justify-center text-center px-6"
+      style={{ minHeight: "60vh" }}
+    >
+      <p
+        className="uppercase mb-2"
+        style={{
+          fontFamily: "var(--font-accent)",
+          fontSize: "var(--text-overline)",
+          letterSpacing: "var(--tracking-widest)",
+          color: "var(--color-bandung-red)",
+        }}
+      >
+        Fout
+      </p>
+      <h1
+        style={{
+          fontFamily: "var(--font-display)",
+          fontSize: "var(--text-h1)",
+          fontWeight: 600,
+          color: "var(--color-kecap)",
+          marginBottom: "var(--space-sm)",
+        }}
+      >
+        Er ging iets mis
+      </h1>
+      <p
+        style={{
+          fontFamily: "var(--font-body)",
+          fontSize: "var(--text-body-lg)",
+          color: "var(--color-kecap)",
+          opacity: 0.7,
+          marginBottom: "var(--space-md)",
+        }}
+      >
+        Probeer het opnieuw of ga terug naar de homepagina.
+      </p>
+      <button
+        onClick={reset}
+        className="inline-flex items-center justify-center px-6 py-3 rounded-sm font-bold uppercase tracking-wider transition-all cursor-pointer"
+        style={{
+          fontFamily: "var(--font-body)",
+          fontSize: "var(--text-body-sm)",
+          backgroundColor: "var(--color-bandung-red)",
+          color: "var(--color-rice)",
+          letterSpacing: "var(--tracking-wider)",
+        }}
+      >
+        Probeer opnieuw
+      </button>
+    </section>
+  );
+}

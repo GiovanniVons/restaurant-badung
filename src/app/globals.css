@@ -1,26 +1,179 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "../styles/tokens.css";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* --- Register ALL primitive colors for Tailwind opacity/state utilities --- */
+  --color-bandung-red: #E83F39;
+  --color-sambal: #C4332E;
+  --color-daun: #0B473A;
+  --color-daun-light: #0E5C4A;
+  --color-daun-muted: #1A3D33;
+  --color-rice: #F5F0E8;
+  --color-rice-dark: #E8E0D3;
+  --color-kecap: #1A1410;
+  --color-pandan: #D4E8D0;
+  --color-kunyit: #E8A832;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* --- Semantic tokens for Tailwind classes --- */
+  --color-bg: var(--color-rice);
+  --color-text: var(--color-kecap);
+  --color-accent: var(--color-bandung-red);
+
+  /* --- Font families --- */
+  --font-display: 'Bandoeng', 'Fraunces', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-accent: 'Josefin Sans', sans-serif;
+
+  /* --- Fluid spacing registered for Tailwind --- */
+  --spacing-section: var(--section-space-main);
+  --spacing-section-sm: var(--section-space-sm);
+  --spacing-section-lg: var(--section-space-lg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-rice);
+  color: var(--color-kecap);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Noise texture overlay for warm paper feel */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* All interactive elements get pointer cursor */
+button,
+[role="button"],
+[role="tab"],
+[role="radio"],
+summary {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   DOUBLE-OFFSET BORDER BUTTON
+   Outer border expands from two diagonal corners on hover:
+     Bottom-left corner: top line (left→right) + left line (bottom→top)
+     Top-right corner:   bottom line (right→left) + right line (top→bottom)
+   Mouse-leave reverses back into the corners.
+   ========================================================================== */
+
+.btn-double {
+  overflow: visible;
+}
+
+/* Wrapper: positioned outside the button via negative inset */
+.btn-border-wrap {
+  position: absolute;
+  inset: -0.375rem;
+  pointer-events: none;
+}
+
+/* Each line segment */
+.btn-border-line {
+  position: absolute;
+  background-color: var(--btn-border-color);
+  transition: transform 150ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Top: grows from left (bottom-left corner) */
+.btn-border-top {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/* Left: grows from bottom (bottom-left corner) */
+.btn-border-left {
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: center bottom;
+}
+
+/* Bottom: grows from right (top-right corner) */
+.btn-border-bottom {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+
+/* Right: grows from top (top-right corner) */
+.btn-border-right {
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: center top;
+}
+
+/* Hover: all 4 lines expand simultaneously from their corners */
+.btn-double:hover .btn-border-top,
+.btn-double:hover .btn-border-bottom {
+  transform: scaleX(1);
+}
+
+.btn-double:hover .btn-border-right,
+.btn-double:hover .btn-border-left {
+  transform: scaleY(1);
+}
+
+/* Mouse-leave: retract back into corners (slightly slower) */
+.btn-double:not(:hover) .btn-border-line {
+  transition-duration: 250ms;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Show border lines instantly without draw animation */
+  .btn-double:hover .btn-border-line {
+    transition-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Cart button pulse on item add */
+@keyframes cart-pulse-anim {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+.cart-pulse {
+  animation: cart-pulse-anim 0.35s ease-out;
 }
