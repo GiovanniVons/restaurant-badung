@@ -50,8 +50,8 @@ export function QuantityStepper({
             aria-label={`Add ${itemName}`}
             className="flex items-center justify-center rounded-sm transition-colors"
             style={{
-              width: 32,
-              height: 32,
+              width: 40,
+              height: 40,
               backgroundColor: "var(--color-daun)",
               color: "var(--color-rice)",
             }}
@@ -64,9 +64,9 @@ export function QuantityStepper({
         ) : (
           <motion.div
             key="stepper"
-            initial={{ width: 32, opacity: 0 }}
+            initial={{ width: 40, opacity: 0 }}
             animate={{ width: "auto", opacity: 1 }}
-            exit={{ width: 32, opacity: 0 }}
+            exit={{ width: 40, opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="flex items-center gap-0 rounded-sm overflow-hidden"
             style={{
@@ -78,8 +78,8 @@ export function QuantityStepper({
               aria-label={`Decrease ${itemName}`}
               className="flex items-center justify-center transition-colors"
               style={{
-                width: 32,
-                height: 30,
+                width: 40,
+                height: 36,
                 backgroundColor: "transparent",
                 color: "var(--color-daun)",
               }}
@@ -92,7 +92,7 @@ export function QuantityStepper({
               className="flex items-center justify-center font-semibold"
               style={{
                 minWidth: 28,
-                height: 30,
+                height: 36,
                 fontFamily: "var(--font-accent)",
                 fontSize: "var(--text-body-sm)",
                 color: "var(--color-kecap)",
@@ -106,8 +106,8 @@ export function QuantityStepper({
               aria-label={`Increase ${itemName}`}
               className="flex items-center justify-center transition-colors"
               style={{
-                width: 32,
-                height: 30,
+                width: 40,
+                height: 36,
                 backgroundColor: "var(--color-daun)",
                 color: "var(--color-rice)",
               }}

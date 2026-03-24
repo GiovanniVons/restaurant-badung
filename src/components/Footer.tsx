@@ -10,7 +10,7 @@ export function Footer() {
 
   return (
     <footer
-      className="pt-16 pb-0"
+      className="pt-16 pb-0 max-md:pb-[calc(var(--bottom-bar-height)+env(safe-area-inset-bottom,0px))]"
       style={{ backgroundColor: "var(--footer-bg)", color: "var(--footer-text)" }}
     >
       <div
@@ -140,7 +140,7 @@ export function Footer() {
               href={CONTACT.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="opacity-80 hover:opacity-100 transition-opacity"
+              className="inline-block py-2 opacity-80 hover:opacity-100 transition-opacity"
               style={{ color: "var(--color-rice)" }}
               aria-label="Facebook"
             >
@@ -150,7 +150,7 @@ export function Footer() {
               href={CONTACT.tripadvisor}
               target="_blank"
               rel="noopener noreferrer"
-              className="opacity-80 hover:opacity-100 transition-opacity"
+              className="inline-block py-2 opacity-80 hover:opacity-100 transition-opacity"
               style={{ color: "var(--color-rice)" }}
               aria-label="TripAdvisor"
             >

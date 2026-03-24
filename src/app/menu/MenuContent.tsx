@@ -200,8 +200,9 @@ export function MenuContent() {
 
       {/* Section 2: Category Navigation (Sticky) -- mobile/tablet only */}
       <nav
-        className="sticky top-[72px] z-30 border-b lg:hidden"
+        className="sticky z-30 border-b lg:hidden"
         style={{
+          top: "var(--header-height-desktop)",
           backgroundColor: "var(--color-rice)",
           borderColor: "var(--color-rice-dark)",
         }}
@@ -264,9 +265,10 @@ export function MenuContent() {
           >
             <button
               onClick={() => setView("dine-in")}
-              className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors"
+              className="px-3 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center"
               style={{
                 fontFamily: "var(--font-accent)",
+                minHeight: 44,
                 backgroundColor:
                   view === "dine-in"
                     ? "var(--color-daun)"
@@ -281,9 +283,10 @@ export function MenuContent() {
             </button>
             <button
               onClick={() => setView("takeaway")}
-              className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors"
+              className="px-3 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors flex items-center"
               style={{
                 fontFamily: "var(--font-accent)",
+                minHeight: 44,
                 backgroundColor:
                   view === "takeaway"
                     ? "var(--color-daun)"
@@ -999,7 +1002,7 @@ export function MenuContent() {
         </div>
       </section>
 
-      <div className="h-[60px] md:hidden" />
+      <div className="md:hidden" style={{ height: "calc(var(--bottom-bar-height) + env(safe-area-inset-bottom, 0px))" }} />
     </div>
   );
 }

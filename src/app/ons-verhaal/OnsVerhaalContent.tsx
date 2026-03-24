@@ -105,7 +105,7 @@ export function OnsVerhaalContent() {
       <section style={{ padding: "var(--section-space-main) 0" }}>
         <div className="mx-auto px-6 grid md:grid-cols-[1fr_1.2fr] gap-12 items-start" style={{ maxWidth: "var(--content-max-width)" }}>
           <ScrollReveal>
-            <div className="relative aspect-[3/4] rounded-sm overflow-hidden">
+            <div className="relative aspect-[3/4] max-h-[300px] md:max-h-none rounded-sm overflow-hidden">
               <Image
                 src="/images/interior-bar-area.jpg"
                 alt="Interieur Restaurant Indonesia Bandung"
@@ -343,7 +343,7 @@ export function OnsVerhaalContent() {
         </div>
       </section>
 
-      <div className="h-[60px] md:hidden" />
+      <div className="md:hidden" style={{ height: "calc(var(--bottom-bar-height) + env(safe-area-inset-bottom, 0px))" }} />
     </div>
   );
 }

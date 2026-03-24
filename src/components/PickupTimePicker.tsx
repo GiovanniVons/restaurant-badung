@@ -91,7 +91,7 @@ export function PickupTimePicker({
               key={group.date}
               type="button"
               onClick={() => handleDayClick(group.date)}
-              className="shrink-0 px-3 py-2 rounded-sm transition-all"
+              className="shrink-0 px-3 py-3 rounded-sm transition-all"
               style={{
                 fontFamily: "var(--font-accent)",
                 fontSize: "var(--text-caption)",
@@ -142,7 +142,7 @@ export function PickupTimePicker({
                 key={slot.value}
                 type="button"
                 onClick={() => onChange(slot.value)}
-                className="py-2 rounded-sm text-center transition-all"
+                className="py-3 rounded-sm text-center transition-all"
                 style={{
                   fontFamily: "var(--font-accent)",
                   fontSize: "var(--text-body-sm)",

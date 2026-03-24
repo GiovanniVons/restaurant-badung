@@ -276,7 +276,7 @@ export function CheckoutContent() {
                 <div
                   className="rounded-sm p-6 sticky"
                   style={{
-                    top: 100,
+                    top: "calc(var(--header-height-desktop) + var(--space-md))",
                     backgroundColor: "rgba(26, 20, 16, 0.03)",
                     border: "1px solid var(--color-rice-dark)",
                   }}
@@ -563,6 +563,7 @@ export function CheckoutContent() {
                       letterSpacing: "var(--tracking-wider)",
                       border: "none",
                       cursor: submitting ? "wait" : "pointer",
+                      minHeight: 48,
                     }}
                   >
                     {submitting
@@ -579,7 +580,7 @@ export function CheckoutContent() {
       </div>
 
       {/* Mobile spacer for bottom bar */}
-      <div className="h-[60px] md:hidden" />
+      <div className="md:hidden" style={{ height: "calc(var(--bottom-bar-height) + env(safe-area-inset-bottom, 0px))" }} />
     </div>
   );
 }

@@ -65,7 +65,7 @@ export function CartDrawer() {
               <button
                 onClick={closeDrawer}
                 aria-label="Close"
-                className="p-2 -mr-2 transition-opacity hover:opacity-70"
+                className="p-3 -mr-3 transition-opacity hover:opacity-70"
               >
                 <svg
                   width="20"
@@ -171,8 +171,8 @@ export function CartDrawer() {
                             aria-label={`Decrease ${item.name}`}
                             className="flex items-center justify-center"
                             style={{
-                              width: 28,
-                              height: 28,
+                              width: 36,
+                              height: 36,
                               color: "var(--color-daun)",
                             }}
                           >
@@ -192,7 +192,7 @@ export function CartDrawer() {
                             className="flex items-center justify-center font-semibold"
                             style={{
                               minWidth: 24,
-                              height: 28,
+                              height: 36,
                               fontFamily: "var(--font-accent)",
                               fontSize: "var(--text-caption)",
                               color: "var(--color-kecap)",
@@ -207,8 +207,8 @@ export function CartDrawer() {
                             aria-label={`Increase ${item.name}`}
                             className="flex items-center justify-center"
                             style={{
-                              width: 28,
-                              height: 28,
+                              width: 36,
+                              height: 36,
                               backgroundColor: "var(--color-daun)",
                               color: "var(--color-rice)",
                             }}
@@ -250,7 +250,7 @@ export function CartDrawer() {
                             color: "var(--color-bandung-red)",
                             background: "none",
                             border: "none",
-                            padding: 0,
+                            padding: "8px 0",
                             cursor: "pointer",
                           }}
                         >

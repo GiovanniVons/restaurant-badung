@@ -404,7 +404,7 @@ export function CateringContent() {
             </p>
           </ScrollReveal>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {cateringCopy.info.items.map((item, i) => (
               <ScrollReveal key={i} delay={0.08 * i}>
                 <div className="text-center">
@@ -508,7 +508,7 @@ export function CateringContent() {
         </div>
       </section>
 
-      <div className="h-[60px] md:hidden" />
+      <div className="md:hidden" style={{ height: "calc(var(--bottom-bar-height) + env(safe-area-inset-bottom, 0px))" }} />
     </div>
   );
 }

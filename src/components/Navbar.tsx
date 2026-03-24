@@ -167,7 +167,7 @@ export function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden relative z-10 p-2"
+            className="md:hidden relative z-10 p-3"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
@@ -207,7 +207,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8"
+            className="fixed inset-0 z-[45] flex flex-col items-center justify-center gap-8"
             style={{ backgroundColor: "var(--color-daun)" }}
           >
             {navLinks.map((link, i) => (
