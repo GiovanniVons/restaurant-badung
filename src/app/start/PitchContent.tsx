@@ -12,7 +12,7 @@ const problems = [
   {
     stat: "Traag",
     label: "op mobiel",
-    desc: "Uw site draait op WordPress met 6+ externe scripts die tegelijk laden. Gasten op hun telefoon wachten te lang en gaan naar een concurrent.",
+    desc: "Je site draait op WordPress met 6+ externe scripts die tegelijk laden. Gasten op hun telefoon wachten te lang en gaan naar een concurrent.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -22,7 +22,7 @@ const problems = [
   {
     stat: "Onzichtbaar",
     label: "voor Google",
-    desc: "Geen beschrijving, geen restaurantgegevens voor Google, geen deelbare voorbeelden op WhatsApp of Facebook. Wie u zoekt, vindt u niet. Of ziet een kale link.",
+    desc: "Geen beschrijving, geen restaurantgegevens voor Google, geen deelbare voorbeelden op WhatsApp of Facebook. Wie je zoekt, vindt je niet. Of ziet een kale link.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="11" cy="11" r="8" />
@@ -33,7 +33,7 @@ const problems = [
   {
     stat: "Geen",
     label: "privacy-compliance",
-    desc: "Geen cookiebanner en geen privacybeleid. Dat is een AVG-overtreding. Bezoekers zien dat, en het schaadt het vertrouwen in uw zaak.",
+    desc: "Geen cookiebanner en geen privacybeleid. Dat is een AVG-overtreding. Bezoekers zien dat, en het schaadt het vertrouwen in je zaak.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -55,7 +55,7 @@ const problems = [
   {
     stat: "Geen",
     label: "inzicht in bezoekers",
-    desc: "Er draait geen analytics. U weet niet hoeveel mensen uw site bezoeken, waar ze afhaken, of welke gerechten het meest bekeken worden.",
+    desc: "Er draait geen analytics. Je weet niet hoeveel mensen je site bezoeken, waar ze afhaken, of welke gerechten het meest bekeken worden.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" /><path d="M3 5v14a2 2 0 0 0 2 2h16v-5" /><path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
@@ -68,7 +68,7 @@ const solutions = [
   {
     stat: "< 2s",
     label: "laadtijd",
-    desc: "Uw site laadt in minder dan 2 seconden, ook op mobiel. Gasten die onderweg zoeken naar 'Indonesisch eten Den Bosch' zien uw site direct. Geen wachttijd, geen afhakers.",
+    desc: "Je site laadt in minder dan 2 seconden, ook op mobiel. Gasten die onderweg zoeken naar 'Indonesisch eten Den Bosch' zien je site direct. Geen wachttijd, geen afhakers.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -78,7 +78,7 @@ const solutions = [
   {
     stat: "Vindbaar",
     label: "in Google en AI-zoekmachines",
-    desc: "Openingstijden, reviews, menu en adres verschijnen direct in Google. Links gedeeld via WhatsApp tonen een mooie preview met afbeelding. Toeristen vinden u in het Engels.",
+    desc: "Openingstijden, reviews, menu en adres verschijnen direct in Google. Links gedeeld via WhatsApp tonen een mooie preview met afbeelding. Toeristen vinden je in het Engels.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="11" cy="11" r="8" />
@@ -89,7 +89,7 @@ const solutions = [
   {
     stat: "Compliant",
     label: "privacy en cookiebeheer",
-    desc: "Cookiebanner en privacybeleid inbegrepen via Vonzie Nexus. Uw zaak voldoet aan de AVG, en bezoekers zien dat u hun privacy serieus neemt.",
+    desc: "Cookiebanner en privacybeleid inbegrepen via Vonzie Nexus. Je zaak voldoet aan de AVG, en bezoekers zien dat je hun privacy serieus neemt.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -99,7 +99,7 @@ const solutions = [
   {
     stat: "Digitaal",
     label: "menu + bestellen",
-    desc: "Gasten bladeren door het menu op hun telefoon en bestellen direct voor afhaal. Geen telefoontje nodig. U past prijzen en gerechten zelf aan, wanneer u wilt.",
+    desc: "Gasten bladeren door het menu op hun telefoon en bestellen direct voor afhaal. Geen telefoontje nodig. Je past prijzen en gerechten zelf aan, wanneer je wilt.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
@@ -109,8 +109,8 @@ const solutions = [
   },
   {
     stat: "Inzicht",
-    label: "in uw bezoekers",
-    desc: "U ziet precies hoeveel mensen uw site bezoeken, welke pagina's populair zijn en waar gasten afhaken. Reserveringen lopen via Remesa, inbegrepen in uw abonnement.",
+    label: "in je bezoekers",
+    desc: "Je ziet precies hoeveel mensen je site bezoeken, welke pagina's populair zijn en waar gasten afhaken. Reserveringen lopen via Remesa, inbegrepen in je abonnement.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" /><path d="M3 5v14a2 2 0 0 0 2 2h16v-5" /><path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
@@ -123,7 +123,7 @@ const stats = [
   { value: "< 2s", label: "Laadtijd op mobiel" },
   { value: "NL + EN", label: "Tweetalig voor toeristen" },
   { value: "8", label: "Pagina's, altijd online" },
-  { value: "0", label: "Externe partijen met uw data" },
+  { value: "0", label: "Externe partijen met je data" },
 ];
 
 const scores = [
@@ -181,11 +181,11 @@ function ScoreRing({ value, size = 80, color }: { value: number; size?: number; 
 const suiteFeatures = [
   {
     title: "Website op maat",
-    desc: "Snel, tweetalig en gebouwd voor uw zaak. Geen template.",
+    desc: "Snel, tweetalig en gebouwd voor je zaak. Geen template.",
   },
   {
     title: "Remesa reserveringen",
-    desc: "Gasten boeken direct via uw site. Geen commissie, geen tussenpersoon.",
+    desc: "Gasten boeken direct via je site. Geen commissie, geen tussenpersoon.",
   },
   {
     title: "Vonzie Nexus (AVG)",
@@ -246,7 +246,7 @@ export function PitchContent() {
               marginBottom: "var(--space-sm)",
             }}
           >
-            Uw nieuwe website
+            Je nieuwe website
             <br />
             is klaar.
           </h1>
@@ -262,7 +262,7 @@ export function PitchContent() {
               maxWidth: "520px",
             }}
           >
-            Van WordPress-template naar een op maat gemaakte website die uw keuken eer aandoet.
+            Van WordPress-template naar een op maat gemaakte website die je keuken eer aandoet.
           </p>
         </ScrollReveal>
 
@@ -309,7 +309,7 @@ export function PitchContent() {
                 marginBottom: "var(--space-lg)",
               }}
             >
-              Wat u nu misloopt
+              Wat je nu misloopt
             </h2>
           </ScrollReveal>
 
@@ -401,7 +401,7 @@ export function PitchContent() {
                 color: "var(--color-kunyit)",
               }}
             >
-              Wat we voor u regelden
+              Wat we voor je regelden
             </p>
             <h2
               className="text-center"
