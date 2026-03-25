@@ -402,6 +402,7 @@ export function MenuContent() {
                           itemName={option.name}
                           priceCents={parsePrice(option.priceTakeaway)}
                           itemType="rijsttafel"
+                          dark
                         />
                       </div>
                     )}
@@ -528,6 +529,7 @@ export function MenuContent() {
                             itemName={special.name}
                             priceCents={parsePrice(special.priceTakeaway)}
                             itemType="special"
+                            dark
                           />
                         </div>
                       )}

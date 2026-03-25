@@ -9,6 +9,7 @@ interface QuantityStepperProps {
   itemName: string;
   priceCents: number;
   itemType: CartItemType;
+  dark?: boolean;
 }
 
 export function QuantityStepper({
@@ -16,6 +17,7 @@ export function QuantityStepper({
   itemName,
   priceCents,
   itemType,
+  dark = false,
 }: QuantityStepperProps) {
   const { items, addItem, updateQuantity } = useCart();
   const cartItem = items.find((i) => i.id === itemId);
@@ -70,7 +72,7 @@ export function QuantityStepper({
             transition={{ duration: 0.2 }}
             className="flex items-center gap-0 rounded-sm overflow-hidden"
             style={{
-              border: "1.5px solid var(--color-daun)",
+              border: dark ? "1.5px solid var(--color-rice)" : "1.5px solid var(--color-daun)",
             }}
           >
             <button
@@ -81,7 +83,7 @@ export function QuantityStepper({
                 width: 40,
                 height: 36,
                 backgroundColor: "transparent",
-                color: "var(--color-daun)",
+                color: dark ? "var(--color-rice)" : "var(--color-daun)",
               }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
@@ -95,7 +97,7 @@ export function QuantityStepper({
                 height: 36,
                 fontFamily: "var(--font-accent)",
                 fontSize: "var(--text-body-sm)",
-                color: "var(--color-kecap)",
+                color: dark ? "var(--color-rice)" : "var(--color-kecap)",
                 textAlign: "center",
               }}
             >
