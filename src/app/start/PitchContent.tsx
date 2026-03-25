@@ -231,7 +231,7 @@ export function PitchContent() {
               color: "var(--color-kunyit)",
             }}
           >
-            Restaurant Indonesia Bandung
+            Hey Yana en Steven
           </p>
         </ScrollReveal>
         <ScrollReveal delay={0.15}>
@@ -246,7 +246,7 @@ export function PitchContent() {
               marginBottom: "var(--space-sm)",
             }}
           >
-            Je nieuwe website
+            Jullie nieuwe website
             <br />
             is klaar.
           </h1>
@@ -288,17 +288,6 @@ export function PitchContent() {
       >
         <div className="mx-auto px-6" style={{ maxWidth: "var(--content-max-width)" }}>
           <ScrollReveal>
-            <p
-              className="text-center uppercase mb-2"
-              style={{
-                fontFamily: "var(--font-accent)",
-                fontSize: "var(--text-overline)",
-                letterSpacing: "var(--tracking-widest)",
-                color: "var(--color-bandung-red)",
-              }}
-            >
-              Wat we zagen
-            </p>
             <h2
               className="text-center"
               style={{
@@ -309,7 +298,7 @@ export function PitchContent() {
                 marginBottom: "var(--space-lg)",
               }}
             >
-              Wat je nu misloopt
+              Wat we tegenkwamen
             </h2>
           </ScrollReveal>
 
@@ -392,17 +381,6 @@ export function PitchContent() {
       >
         <div className="mx-auto px-6" style={{ maxWidth: "var(--content-max-width)" }}>
           <ScrollReveal>
-            <p
-              className="text-center uppercase mb-2"
-              style={{
-                fontFamily: "var(--font-accent)",
-                fontSize: "var(--text-overline)",
-                letterSpacing: "var(--tracking-widest)",
-                color: "var(--color-kunyit)",
-              }}
-            >
-              Wat we voor je regelden
-            </p>
             <h2
               className="text-center"
               style={{
