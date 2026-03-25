@@ -453,156 +453,149 @@ export function MenuContent() {
             backgroundColor: "var(--color-daun)",
           }}
         >
-          <div
-            className="mx-auto px-6"
-            style={{ maxWidth: "var(--content-wide)" }}
-          >
-            <div className="grid md:grid-cols-[1fr_auto] md:gap-12 md:items-start">
-              {/* Content column */}
-              <div>
-                <ScrollReveal>
-                  <span
-                    className="block uppercase mb-2"
-                    style={{
-                      fontFamily: "var(--font-accent)",
-                      fontSize: "var(--text-caption)",
-                      letterSpacing: "var(--tracking-caps)",
-                      color: "var(--color-kunyit)",
-                    }}
-                  >
-                    {lang === "nl" ? "Maandmenu" : "Monthly Menu"}
-                  </span>
-                  <h2
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "var(--text-h2)",
-                      fontWeight: 500,
-                      color: "var(--color-rice)",
-                      marginBottom: "var(--space-xs)",
-                    }}
-                  >
-                    {t(menuCopy.specialsHeadline)}
-                  </h2>
-                </ScrollReveal>
+          <div className="grid md:grid-cols-2">
+            {/* Image column */}
+            <div className="relative aspect-[4/3] md:aspect-auto">
+              <Image
+                src="/images/rijsttafel-table-setting.jpg"
+                alt={lang === "nl" ? "Gerecht van de maand" : "Dish of the month"}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
 
-                <div
-                  className="grid grid-cols-1 sm:grid-cols-2"
-                  style={{ gap: "var(--space-sm)" }}
+            {/* Content column */}
+            <div
+              style={{ padding: "var(--space-lg) var(--space-md)" }}
+              className="flex flex-col justify-center"
+            >
+              <ScrollReveal>
+                <span
+                  className="block uppercase"
+                  style={{
+                    fontFamily: "var(--font-accent)",
+                    fontSize: "var(--text-caption)",
+                    letterSpacing: "var(--tracking-caps)",
+                    color: "var(--color-kunyit)",
+                    marginBottom: "var(--space-3xs)",
+                  }}
                 >
-                  {activeSpecials.map((special) => {
-                    const price = getPrice(
-                      special.priceDineIn,
-                      special.priceTakeaway
-                    );
-                    return (
-                      <ScrollReveal key={special.name}>
-                        <div
-                          className="rounded-sm"
-                          style={{
-                            padding: "var(--space-sm)",
-                            backgroundColor: "rgba(245,240,232,0.08)",
-                            border: "1px solid rgba(245,240,232,0.15)",
-                          }}
-                        >
-                          <div className="flex items-baseline justify-between gap-4 mb-2">
-                            <h3
-                              style={{
-                                fontFamily: "var(--font-display)",
-                                fontSize: "var(--text-h4)",
-                                fontWeight: 500,
-                                color: "var(--color-rice)",
-                                marginBottom: 0,
-                              }}
-                            >
-                              {special.name}
-                            </h3>
-                            {price && (
-                              <span
-                                className="shrink-0"
-                                style={{
-                                  fontFamily: "var(--font-accent)",
-                                  fontSize: "var(--text-body)",
-                                  color: "var(--color-kunyit)",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                {price}
-                              </span>
-                            )}
-                          </div>
-                          <p
+                  {lang === "nl" ? "Maandmenu" : "Monthly Menu"}
+                </span>
+                <h2
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "var(--text-h2)",
+                    fontWeight: 500,
+                    color: "var(--color-rice)",
+                    marginBottom: "var(--space-sm)",
+                  }}
+                >
+                  {t(menuCopy.specialsHeadline)}
+                </h2>
+              </ScrollReveal>
+
+              <div className="flex flex-col" style={{ gap: "var(--space-sm)" }}>
+                {activeSpecials.map((special) => {
+                  const price = getPrice(
+                    special.priceDineIn,
+                    special.priceTakeaway
+                  );
+                  return (
+                    <ScrollReveal key={special.name}>
+                      <div
+                        className="rounded-sm"
+                        style={{
+                          padding: "var(--space-sm)",
+                          backgroundColor: "rgba(245,240,232,0.08)",
+                          border: "1px solid rgba(245,240,232,0.12)",
+                        }}
+                      >
+                        <div className="flex items-baseline justify-between gap-4 mb-2">
+                          <h3
                             style={{
-                              fontFamily: "var(--font-body)",
-                              fontSize: "var(--text-body-sm)",
-                              lineHeight: "var(--leading-body)",
+                              fontFamily: "var(--font-display)",
+                              fontSize: "var(--text-h4)",
+                              fontWeight: 500,
                               color: "var(--color-rice)",
-                              opacity: 0.85,
-                              margin: 0,
+                              marginBottom: 0,
                             }}
                           >
-                            {t(special.desc)}
-                          </p>
-                          {special.dishes && special.dishes.length > 0 && (
-                            <ul
-                              className="grid grid-cols-1 sm:grid-cols-2"
+                            {special.name}
+                          </h3>
+                          {price && (
+                            <span
+                              className="shrink-0"
                               style={{
-                                listStyle: "none",
-                                padding: 0,
-                                margin: 0,
-                                marginTop: "var(--space-xs)",
-                                gap: "var(--space-3xs) var(--space-sm)",
+                                fontFamily: "var(--font-accent)",
+                                fontSize: "var(--text-body)",
+                                color: "var(--color-kunyit)",
+                                fontWeight: 600,
                               }}
                             >
-                              {special.dishes.map((dish) => (
-                                <li
-                                  key={dish.name}
-                                  style={{
-                                    fontFamily: "var(--font-body)",
-                                    fontSize: "var(--text-caption)",
-                                    lineHeight: "var(--leading-relaxed)",
-                                  }}
-                                >
-                                  <span style={{ color: "var(--color-kunyit)", fontWeight: 600 }}>
-                                    {dish.name}
-                                  </span>
-                                  {" "}
-                                  <span style={{ color: "var(--color-rice)", opacity: 0.6 }}>
-                                    {t(dish.desc)}
-                                  </span>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                          {view === "takeaway" && special.priceTakeaway && (
-                            <div className="mt-3 flex justify-end">
-                              <QuantityStepper
-                                itemId={generateItemId("specials", special.name)}
-                                itemName={special.name}
-                                priceCents={parsePrice(special.priceTakeaway)}
-                                itemType="special"
-                                dark
-                              />
-                            </div>
+                              {price}
+                            </span>
                           )}
                         </div>
-                      </ScrollReveal>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Flyer image -- desktop only */}
-              <div className="hidden md:block shrink-0" style={{ width: 280 }}>
-                <Image
-                  src="/mm-maart-2026.png"
-                  alt={lang === "nl" ? "Maandmenu maart 2026" : "Monthly menu March 2026"}
-                  width={280}
-                  height={396}
-                  className="rounded-sm"
-                  style={{
-                    border: "1px solid rgba(245,240,232,0.15)",
-                  }}
-                />
+                        <p
+                          style={{
+                            fontFamily: "var(--font-body)",
+                            fontSize: "var(--text-body-sm)",
+                            lineHeight: "var(--leading-body)",
+                            color: "var(--color-rice)",
+                            opacity: 0.85,
+                            margin: 0,
+                          }}
+                        >
+                          {t(special.desc)}
+                        </p>
+                        {special.dishes && special.dishes.length > 0 && (
+                          <ul
+                            className="grid grid-cols-1 sm:grid-cols-2"
+                            style={{
+                              listStyle: "none",
+                              padding: 0,
+                              margin: 0,
+                              marginTop: "var(--space-xs)",
+                              gap: "var(--space-3xs) var(--space-sm)",
+                            }}
+                          >
+                            {special.dishes.map((dish) => (
+                              <li
+                                key={dish.name}
+                                style={{
+                                  fontFamily: "var(--font-body)",
+                                  fontSize: "var(--text-caption)",
+                                  lineHeight: "var(--leading-relaxed)",
+                                }}
+                              >
+                                <span style={{ color: "var(--color-kunyit)", fontWeight: 600 }}>
+                                  {dish.name}
+                                </span>
+                                {" "}
+                                <span style={{ color: "var(--color-rice)", opacity: 0.6 }}>
+                                  {t(dish.desc)}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                        {view === "takeaway" && special.priceTakeaway && (
+                          <div className="mt-3 flex justify-end">
+                            <QuantityStepper
+                              itemId={generateItemId("specials", special.name)}
+                              itemName={special.name}
+                              priceCents={parsePrice(special.priceTakeaway)}
+                              itemType="special"
+                              dark
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </ScrollReveal>
+                  );
+                })}
               </div>
             </div>
           </div>
