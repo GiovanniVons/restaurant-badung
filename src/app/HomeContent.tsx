@@ -22,6 +22,7 @@ export function HomeContent() {
           className="object-cover"
           priority
           sizes="100vw"
+          quality={60}
         />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(26,20,16,0.4) 0%, rgba(26,20,16,0.7) 100%)" }} />
 
@@ -108,6 +109,7 @@ export function HomeContent() {
             fill
             className="object-cover opacity-30"
             sizes="100vw"
+            quality={50}
           />
         </div>
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(26,20,16,0.75)" }} />

@@ -100,7 +100,7 @@ export const home = {
           en: "Clear chicken soup, golden with turmeric, with glass noodles, bean sprouts and crispy fried shallots.",
         },
         price: "\u20AC7,50",
-        image: "/images/food-platter-overhead.png",
+        image: "/images/food-platter-overhead.jpg",
       },
       {
         name: "Gado-gado",

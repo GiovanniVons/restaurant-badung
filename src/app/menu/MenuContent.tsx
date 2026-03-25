@@ -143,12 +143,13 @@ export function MenuContent() {
         }}
       >
         <Image
-          src="/images/food-platter-overhead.png"
+          src="/images/food-platter-overhead.jpg"
           alt="Indonesische gerechten"
           fill
           className="object-cover opacity-20"
           sizes="100vw"
           priority
+          quality={50}
         />
         <div className="relative z-10 px-6">
           <h1

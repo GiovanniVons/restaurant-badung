@@ -251,6 +251,7 @@ export function OnsVerhaalContent() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                quality={60}
               />
             </div>
           </ScrollReveal>
@@ -321,6 +322,7 @@ export function OnsVerhaalContent() {
           fill
           className="object-cover"
           sizes="100vw"
+          quality={50}
         />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(26,20,16,0.85), rgba(26,20,16,0.6))" }} />
         <div className="relative z-10 mx-auto px-6 text-center" style={{ maxWidth: "var(--content-narrow)" }}>

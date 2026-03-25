@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Menukaart | Restaurant Indonesia Bandung",
     description: "Vijf rijsttafels, voorgerechten, sate, soepen en meer. Alles vers bereid in onze keuken.",
-    images: [{ url: "/images/food-platter-overhead.png", width: 1200, height: 630 }],
+    images: [{ url: "/images/food-platter-overhead.jpg", width: 1200, height: 630 }],
   },
 };
 
