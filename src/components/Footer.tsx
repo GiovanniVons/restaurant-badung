@@ -162,15 +162,46 @@ export function Footer() {
 
       {/* Legal bar */}
       <div
-        className="mt-12 py-4 px-6 text-center"
+        className="mt-12 py-4 px-6 flex flex-wrap items-center justify-start sm:justify-center gap-x-4 gap-y-2"
         style={{
           backgroundColor: "var(--footer-bottom-bg)",
-          fontSize: "var(--text-caption)",
+          fontSize: "var(--text-body-sm)",
           fontFamily: "var(--font-body)",
           opacity: 0.7,
+          color: "var(--color-rice)",
         }}
       >
-        <p style={{ color: "var(--color-rice)" }}>{t(footer.legal)}</p>
+        <span>{t(footer.legal)}</span>
+        <span>&middot;</span>
+        <a
+          href="https://nexus.vonzie.app/p/6543/restaurant-bandung/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="opacity-80 hover:opacity-100 transition-opacity"
+          style={{ color: "var(--color-rice)" }}
+        >
+          Privacy
+        </a>
+        <span>&middot;</span>
+        <a
+          href="https://nexus.vonzie.app/p/6543/restaurant-bandung/cookie"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="opacity-80 hover:opacity-100 transition-opacity"
+          style={{ color: "var(--color-rice)" }}
+        >
+          Cookies
+        </a>
+        <span>&middot;</span>
+        <a
+          href="https://vonzie.studio"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="opacity-80 hover:opacity-100 transition-opacity"
+          style={{ color: "var(--color-rice)" }}
+        >
+          Made by Vonzie Studio
+        </a>
       </div>
     </footer>
   );

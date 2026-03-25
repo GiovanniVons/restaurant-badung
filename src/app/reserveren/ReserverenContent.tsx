@@ -218,7 +218,7 @@ export function ReserverenContent() {
                         }}
                       >
                         <td
-                          className="py-4 pr-4"
+                          className="py-4 pl-3 pr-4"
                           style={{
                             fontFamily: "var(--font-accent)",
                             fontSize: "var(--text-body-sm)",
@@ -237,7 +237,7 @@ export function ReserverenContent() {
                           )}
                         </td>
                         <td
-                          className="py-4 text-right"
+                          className="py-4 pr-3 text-right"
                           style={{
                             fontFamily: "var(--font-body)",
                             fontSize: "var(--text-body)",
