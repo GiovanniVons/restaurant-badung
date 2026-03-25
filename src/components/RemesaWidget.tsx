@@ -7,9 +7,11 @@ import Script from "next/script";
 function toggleWidget(el: HTMLElement | null, hidden: boolean) {
   if (!el) return;
   if (hidden) {
-    el.style.setProperty("display", "none", "important");
-  } else if (el.style.display === "none") {
-    el.style.removeProperty("display");
+    el.style.setProperty("visibility", "hidden", "important");
+    el.style.setProperty("pointer-events", "none", "important");
+  } else {
+    el.style.removeProperty("visibility");
+    el.style.removeProperty("pointer-events");
   }
 }
 

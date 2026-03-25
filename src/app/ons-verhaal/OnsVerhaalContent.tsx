@@ -200,16 +200,6 @@ export function OnsVerhaalContent() {
         className="relative overflow-hidden"
         style={{ padding: "var(--section-space-main) 0" }}
       >
-        {/* Wow moment: batik watermark */}
-        <div
-          className="absolute top-1/2 -translate-y-1/2 right-0 w-80 h-80 opacity-[0.06] pointer-events-none"
-          style={{
-            backgroundImage: `repeating-conic-gradient(var(--color-kecap) 0% 25%, transparent 0% 50%)`,
-            backgroundSize: "40px 40px",
-            borderRadius: "50%",
-          }}
-        />
-
         <div className="mx-auto px-6 grid md:grid-cols-2 gap-12 items-center" style={{ maxWidth: "var(--content-max-width)" }}>
           <ScrollReveal>
             <div>

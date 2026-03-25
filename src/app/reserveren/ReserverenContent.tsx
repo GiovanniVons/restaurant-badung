@@ -182,7 +182,7 @@ export function ReserverenContent() {
                 <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-body-sm)", color: "var(--color-rice)", opacity: 0.8, marginBottom: "var(--space-sm)" }}>
                   {t(reserveCopy.orderCard.body)}
                 </p>
-                <Button href="/menu" variant="secondary-light">
+                <Button href="/menu?view=afhalen" variant="secondary-light">
                   {t(reserveCopy.orderCard.cta)}
                 </Button>
               </div>
