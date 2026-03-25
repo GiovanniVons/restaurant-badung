@@ -1,14 +1,6 @@
 @import "tailwindcss";
 @import "../styles/tokens.css";
 
-/* Isolate third-party widgets from Tailwind preflight */
-#remesa-widget-button,
-#remesa-widget-panel,
-#remesa-widget-button *,
-#remesa-widget-panel * {
-  all: revert;
-}
-
 @theme inline {
   /* --- Register ALL primitive colors for Tailwind opacity/state utilities --- */
   --color-bandung-red: #E83F39;
