@@ -11,6 +11,7 @@ import { AnnouncementBanner } from "@/components/AnnouncementBanner";
 import { RestaurantJsonLd } from "@/components/JsonLd";
 import { CartDrawer } from "@/components/CartDrawer";
 import { CartFab } from "@/components/CartFab";
+import { SiteChrome } from "@/components/SiteChrome";
 
 const bandoeng = localFont({
   src: "../../public/fonts/Bandoeng.woff2",
@@ -86,15 +87,18 @@ export default function RootLayout({
         <RestaurantJsonLd />
         <LanguageProvider>
           <CartProvider>
-            <AnnouncementBanner />
-            <Navbar />
+            <SiteChrome>
+              <AnnouncementBanner />
+              <Navbar />
+            </SiteChrome>
             <main id="main-content" className="flex-1">{children}</main>
-            <Footer />
-
-            <CartDrawer />
-            <Suspense>
-              <CartFab />
-            </Suspense>
+            <SiteChrome>
+              <Footer />
+              <CartDrawer />
+              <Suspense>
+                <CartFab />
+              </Suspense>
+            </SiteChrome>
           </CartProvider>
         </LanguageProvider>
       </body>

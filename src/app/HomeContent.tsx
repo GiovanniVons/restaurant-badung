@@ -7,9 +7,14 @@ import { OpenClosedRibbon } from "@/components/OpenClosedRibbon";
 import { Button } from "@/components/Button";
 import { ScrollReveal, StaggerReveal, StaggerItem } from "@/components/ScrollReveal";
 import { KawungDivider } from "@/components/KawungDivider";
+import { MONTHLY_SPECIALS } from "@/data/menu";
 
 export function HomeContent() {
   const { t } = useLang();
+
+  const now = new Date();
+  const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+  const activeSpecial = MONTHLY_SPECIALS.find((s) => s.activeMonth === currentMonth);
 
   return (
     <div>
@@ -175,6 +180,101 @@ export function HomeContent() {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Monthly Special Callout (conditional) */}
+      {activeSpecial && (
+        <section
+          style={{
+            padding: "var(--section-space-sm) 0",
+            backgroundColor: "var(--color-daun)",
+          }}
+        >
+          <div className="mx-auto px-6 text-center" style={{ maxWidth: "var(--content-narrow)" }}>
+            <ScrollReveal>
+              <p
+                className="uppercase mb-2"
+                style={{
+                  fontFamily: "var(--font-accent)",
+                  fontSize: "var(--text-overline)",
+                  letterSpacing: "var(--tracking-widest)",
+                  color: "var(--color-kunyit)",
+                }}
+              >
+                {t({ nl: "Deze maand", en: "This month" })}
+              </p>
+              <h2
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "var(--text-h3)",
+                  fontWeight: 500,
+                  color: "var(--color-rice)",
+                  marginBottom: "var(--space-2xs)",
+                }}
+              >
+                {activeSpecial.name}
+              </h2>
+              <p
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "var(--text-body-sm)",
+                  lineHeight: "var(--leading-body)",
+                  color: "var(--color-rice)",
+                  opacity: 0.8,
+                  marginBottom: "var(--space-sm)",
+                }}
+              >
+                {t(activeSpecial.desc)}
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "var(--text-h4)",
+                  fontWeight: 600,
+                  color: "var(--color-kunyit)",
+                  marginBottom: "var(--space-md)",
+                }}
+              >
+                {activeSpecial.priceDineIn}
+                <span
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "var(--text-caption)",
+                    fontWeight: 400,
+                    opacity: 0.6,
+                    color: "var(--color-rice)",
+                    marginLeft: "var(--space-2xs)",
+                  }}
+                >
+                  {t({ nl: "dine-in", en: "dine-in" })}
+                </span>
+                {activeSpecial.priceTakeaway && (
+                  <>
+                    <span style={{ color: "var(--color-rice)", opacity: 0.3, margin: "0 var(--space-2xs)" }}>
+                      /
+                    </span>
+                    {activeSpecial.priceTakeaway}
+                    <span
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "var(--text-caption)",
+                        fontWeight: 400,
+                        opacity: 0.6,
+                        color: "var(--color-rice)",
+                        marginLeft: "var(--space-2xs)",
+                      }}
+                    >
+                      {t({ nl: "afhaal", en: "takeaway" })}
+                    </span>
+                  </>
+                )}
+              </p>
+              <Button href="/menu" variant="secondary-light" size="sm">
+                {t({ nl: "Bekijk het menu", en: "View menu" })}
+              </Button>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
 
       {/* Section 5: Menu Highlights */}
       <section style={{ padding: "var(--section-space-main) 0" }}>

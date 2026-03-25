@@ -32,9 +32,9 @@ export function CartFab() {
         <motion.button
           key={lastAddedAt}
           initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: [1, 1.1, 1], opacity: 1 }}
+          animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
-          transition={{ type: "spring", damping: 20, stiffness: 300 }}
+          transition={{ type: "spring", damping: 15, stiffness: 300 }}
           onClick={openDrawer}
           aria-label={`${t(orderCopy.fab.label)} (${count})`}
           className="fixed z-50 flex items-center gap-3 rounded-full shadow-lg transition-shadow hover:shadow-xl"

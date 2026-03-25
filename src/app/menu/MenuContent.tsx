@@ -522,6 +522,35 @@ export function MenuContent() {
                       >
                         {t(special.desc)}
                       </p>
+                      {special.dishes && special.dishes.length > 0 && (
+                        <ul
+                          className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1"
+                          style={{
+                            listStyle: "none",
+                            padding: 0,
+                            margin: 0,
+                          }}
+                        >
+                          {special.dishes.map((dish) => (
+                            <li
+                              key={dish.name}
+                              className="flex items-baseline gap-2"
+                              style={{
+                                fontFamily: "var(--font-body)",
+                                fontSize: "var(--text-caption)",
+                                lineHeight: "var(--leading-relaxed)",
+                              }}
+                            >
+                              <span style={{ color: "var(--color-kunyit)", fontWeight: 600 }}>
+                                {dish.name}
+                              </span>
+                              <span style={{ color: "var(--color-rice)", opacity: 0.6 }}>
+                                {t(dish.desc)}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                       {view === "takeaway" && special.priceTakeaway && (
                         <div className="mt-3 flex justify-end">
                           <QuantityStepper

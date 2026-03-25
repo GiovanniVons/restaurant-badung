@@ -29,6 +29,7 @@ export interface MonthlySpecial {
   priceDineIn: string;
   priceTakeaway: string | null;
   activeMonth: string; // ISO "2026-04" -- empty string to hide
+  dishes?: { name: string; desc: { nl: string; en: string } }[];
 }
 
 /* ────────────────────────────────────────────
@@ -99,14 +100,25 @@ export const RIJSTTAFEL_OPTIONS: RijsttafelOption[] = [
 
 export const MONTHLY_SPECIALS: MonthlySpecial[] = [
   {
-    name: "Maandmenu",
+    name: "Maandmenu Maart",
     desc: {
-      nl: "Elke maand stelt Yana een speciaal menu samen met seizoensgebonden gerechten. Vraag naar het maandmenu bij reservering.",
-      en: "Every month Yana puts together a special menu with seasonal dishes. Ask about the monthly menu when you reserve.",
+      nl: "Mini rijsttafel voor 2 personen. Elke maand stelt Yana een speciaal menu samen met seizoensgebonden gerechten.",
+      en: "Mini rijsttafel for 2 persons. Every month Yana puts together a special menu with seasonal dishes.",
     },
     priceDineIn: "\u20AC24,50",
     priceTakeaway: "\u20AC21,00",
-    activeMonth: "2026-04",
+    activeMonth: "2026-03",
+    dishes: [
+      { name: "Nasi Putih", desc: { nl: "Witte rijst", en: "White rice" } },
+      { name: "Ayam Opor", desc: { nl: "Zachtgegaarde kip", en: "Slow-cooked chicken" } },
+      { name: "Daging Gulai", desc: { nl: "Rundvlees met kerrie", en: "Beef with curry" } },
+      { name: "Sate Ayam", desc: { nl: "2 stokjes kipsate", en: "2 chicken satay skewers" } },
+      { name: "Urap Urap", desc: { nl: "Groenten met gekruide kokos", en: "Vegetables with spiced coconut" } },
+      { name: "Mini Lumpia's", desc: { nl: "4 mini loempia's", en: "4 mini spring rolls" } },
+      { name: "Maniok", desc: { nl: "Cassavechips", en: "Cassava chips" } },
+      { name: "Acar Ketimon", desc: { nl: "Zoetzuur van komkommer", en: "Sweet and sour cucumber pickle" } },
+      { name: "Kentang Belado", desc: { nl: "Zoetgebakken aardappelfrietjes", en: "Sweet-fried potato fries" } },
+    ],
   },
 ];
 
