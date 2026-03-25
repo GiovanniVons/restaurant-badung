@@ -68,10 +68,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
               i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
             )
           : [...prev, { ...item, quantity: 1 }];
-        // Only auto-open drawer on first item added to an empty cart
-        if (prev.length === 0) {
-          queueMicrotask(() => setIsDrawerOpen(true));
-        }
         return next;
       });
       setLastAddedAt(Date.now());

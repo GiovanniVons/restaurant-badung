@@ -180,9 +180,10 @@ export function MenuContent() {
       <nav
         className="sticky z-30 border-b lg:hidden"
         style={{
-          top: "var(--header-height-desktop)",
+          top: "var(--nav-offset, var(--header-height-desktop))",
           backgroundColor: "var(--color-rice)",
           borderColor: "var(--color-rice-dark)",
+          transition: "top 300ms ease",
         }}
       >
         <div
@@ -193,12 +194,12 @@ export function MenuContent() {
           }}
         >
           <div
-            className="flex items-center gap-6 overflow-x-auto whitespace-nowrap flex-1"
+            className="flex items-center gap-1 overflow-x-auto whitespace-nowrap flex-1"
             style={{ scrollbarWidth: "none" }}
           >
             <a
               href="#rijsttafel"
-              className="shrink-0 font-semibold uppercase transition-colors"
+              className="shrink-0 font-semibold uppercase transition-colors py-3 px-3"
               style={{
                 fontFamily: "var(--font-accent)",
                 fontSize: "var(--text-caption)",
@@ -211,7 +212,7 @@ export function MenuContent() {
             {activeSpecials.length > 0 && (
               <a
                 href="#specials"
-                className="shrink-0 uppercase transition-colors hover:opacity-70"
+                className="shrink-0 uppercase transition-colors hover:opacity-70 py-3 px-3"
                 style={{
                   fontFamily: "var(--font-accent)",
                   fontSize: "var(--text-caption)",
@@ -226,7 +227,7 @@ export function MenuContent() {
               <a
                 key={cat.slug}
                 href={`#${cat.slug}`}
-                className="shrink-0 uppercase transition-colors hover:opacity-70"
+                className="shrink-0 uppercase transition-colors hover:opacity-70 py-3 px-3"
                 style={{
                   fontFamily: "var(--font-accent)",
                   fontSize: "var(--text-caption)",
@@ -327,8 +328,22 @@ export function MenuContent() {
                       borderColor: "rgba(245,240,232,0.15)",
                     }}
                   >
+                    {option.flagship && (
+                      <span
+                        className="inline-block px-2 py-0.5 rounded-sm text-xs uppercase mb-2"
+                        style={{
+                          backgroundColor: "var(--color-kunyit)",
+                          color: "var(--color-kecap)",
+                          fontFamily: "var(--font-accent)",
+                          letterSpacing: "var(--tracking-caps)",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {lang === "nl" ? "Vlaggenschip" : "Flagship"}
+                      </span>
+                    )}
                     <div className="flex items-center justify-between gap-3 mb-2">
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2">
                         <span
                           style={{
                             fontFamily: "var(--font-display)",
@@ -341,20 +356,6 @@ export function MenuContent() {
                         </span>
                         {option.vegetarian && (
                           <svg aria-label="Vegetarisch" width="14" height="14" viewBox="0 0 24 24" fill="var(--color-daun)" style={{ display: "inline-block", verticalAlign: "middle" }}><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75" /></svg>
-                        )}
-                        {option.flagship && (
-                          <span
-                            className="px-2 py-0.5 rounded-sm text-xs uppercase"
-                            style={{
-                              backgroundColor: "var(--color-kunyit)",
-                              color: "var(--color-kecap)",
-                              fontFamily: "var(--font-accent)",
-                              letterSpacing: "var(--tracking-caps)",
-                              fontWeight: 600,
-                            }}
-                          >
-                            {lang === "nl" ? "Vlaggenschip" : "Flagship"}
-                          </span>
                         )}
                       </div>
                       <span
@@ -454,118 +455,155 @@ export function MenuContent() {
         >
           <div
             className="mx-auto px-6"
-            style={{ maxWidth: "var(--content-narrow)" }}
+            style={{ maxWidth: "var(--content-wide)" }}
           >
-            <ScrollReveal>
-              <h2
-                className="text-center"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "var(--text-h3)",
-                  fontWeight: 500,
-                  color: "var(--color-rice)",
-                  marginBottom: "var(--space-md)",
-                }}
-              >
-                {t(menuCopy.specialsHeadline)}
-              </h2>
-            </ScrollReveal>
+            <div className="grid md:grid-cols-[1fr_auto] md:gap-12 md:items-start">
+              {/* Content column */}
+              <div>
+                <ScrollReveal>
+                  <span
+                    className="block uppercase mb-2"
+                    style={{
+                      fontFamily: "var(--font-accent)",
+                      fontSize: "var(--text-caption)",
+                      letterSpacing: "var(--tracking-caps)",
+                      color: "var(--color-kunyit)",
+                    }}
+                  >
+                    {lang === "nl" ? "Maandmenu" : "Monthly Menu"}
+                  </span>
+                  <h2
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "var(--text-h2)",
+                      fontWeight: 500,
+                      color: "var(--color-rice)",
+                      marginBottom: "var(--space-xs)",
+                    }}
+                  >
+                    {t(menuCopy.specialsHeadline)}
+                  </h2>
+                </ScrollReveal>
 
-            <div className="space-y-4">
-              {activeSpecials.map((special) => {
-                const price = getPrice(
-                  special.priceDineIn,
-                  special.priceTakeaway
-                );
-                return (
-                  <ScrollReveal key={special.name}>
-                    <div
-                      className="p-5 rounded-sm"
-                      style={{
-                        backgroundColor: "rgba(245,240,232,0.1)",
-                        border: "1px solid rgba(245,240,232,0.2)",
-                      }}
-                    >
-                      <div className="flex items-baseline justify-between gap-4 mb-2">
-                        <h3
+                <div
+                  className="grid grid-cols-1 sm:grid-cols-2"
+                  style={{ gap: "var(--space-sm)" }}
+                >
+                  {activeSpecials.map((special) => {
+                    const price = getPrice(
+                      special.priceDineIn,
+                      special.priceTakeaway
+                    );
+                    return (
+                      <ScrollReveal key={special.name}>
+                        <div
+                          className="rounded-sm"
                           style={{
-                            fontFamily: "var(--font-display)",
-                            fontSize: "var(--text-h4)",
-                            fontWeight: 500,
-                            color: "var(--color-rice)",
-                            marginBottom: 0,
+                            padding: "var(--space-sm)",
+                            backgroundColor: "rgba(245,240,232,0.08)",
+                            border: "1px solid rgba(245,240,232,0.15)",
                           }}
                         >
-                          {special.name}
-                        </h3>
-                        {price && (
-                          <span
-                            style={{
-                              fontFamily: "var(--font-accent)",
-                              fontSize: "var(--text-body)",
-                              color: "var(--color-kunyit)",
-                              fontWeight: 600,
-                            }}
-                          >
-                            {price}
-                          </span>
-                        )}
-                      </div>
-                      <p
-                        style={{
-                          fontFamily: "var(--font-body)",
-                          fontSize: "var(--text-body-sm)",
-                          lineHeight: "var(--leading-body)",
-                          color: "var(--color-rice)",
-                          opacity: 0.85,
-                        }}
-                      >
-                        {t(special.desc)}
-                      </p>
-                      {special.dishes && special.dishes.length > 0 && (
-                        <ul
-                          className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1"
-                          style={{
-                            listStyle: "none",
-                            padding: 0,
-                            margin: 0,
-                          }}
-                        >
-                          {special.dishes.map((dish) => (
-                            <li
-                              key={dish.name}
-                              className="flex items-baseline gap-2"
+                          <div className="flex items-baseline justify-between gap-4 mb-2">
+                            <h3
                               style={{
-                                fontFamily: "var(--font-body)",
-                                fontSize: "var(--text-caption)",
-                                lineHeight: "var(--leading-relaxed)",
+                                fontFamily: "var(--font-display)",
+                                fontSize: "var(--text-h4)",
+                                fontWeight: 500,
+                                color: "var(--color-rice)",
+                                marginBottom: 0,
                               }}
                             >
-                              <span style={{ color: "var(--color-kunyit)", fontWeight: 600 }}>
-                                {dish.name}
+                              {special.name}
+                            </h3>
+                            {price && (
+                              <span
+                                className="shrink-0"
+                                style={{
+                                  fontFamily: "var(--font-accent)",
+                                  fontSize: "var(--text-body)",
+                                  color: "var(--color-kunyit)",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                {price}
                               </span>
-                              <span style={{ color: "var(--color-rice)", opacity: 0.6 }}>
-                                {t(dish.desc)}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                      {view === "takeaway" && special.priceTakeaway && (
-                        <div className="mt-3 flex justify-end">
-                          <QuantityStepper
-                            itemId={generateItemId("specials", special.name)}
-                            itemName={special.name}
-                            priceCents={parsePrice(special.priceTakeaway)}
-                            itemType="special"
-                            dark
-                          />
+                            )}
+                          </div>
+                          <p
+                            style={{
+                              fontFamily: "var(--font-body)",
+                              fontSize: "var(--text-body-sm)",
+                              lineHeight: "var(--leading-body)",
+                              color: "var(--color-rice)",
+                              opacity: 0.85,
+                              margin: 0,
+                            }}
+                          >
+                            {t(special.desc)}
+                          </p>
+                          {special.dishes && special.dishes.length > 0 && (
+                            <ul
+                              className="grid grid-cols-1 sm:grid-cols-2"
+                              style={{
+                                listStyle: "none",
+                                padding: 0,
+                                margin: 0,
+                                marginTop: "var(--space-xs)",
+                                gap: "var(--space-3xs) var(--space-sm)",
+                              }}
+                            >
+                              {special.dishes.map((dish) => (
+                                <li
+                                  key={dish.name}
+                                  style={{
+                                    fontFamily: "var(--font-body)",
+                                    fontSize: "var(--text-caption)",
+                                    lineHeight: "var(--leading-relaxed)",
+                                  }}
+                                >
+                                  <span style={{ color: "var(--color-kunyit)", fontWeight: 600 }}>
+                                    {dish.name}
+                                  </span>
+                                  {" "}
+                                  <span style={{ color: "var(--color-rice)", opacity: 0.6 }}>
+                                    {t(dish.desc)}
+                                  </span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                          {view === "takeaway" && special.priceTakeaway && (
+                            <div className="mt-3 flex justify-end">
+                              <QuantityStepper
+                                itemId={generateItemId("specials", special.name)}
+                                itemName={special.name}
+                                priceCents={parsePrice(special.priceTakeaway)}
+                                itemType="special"
+                                dark
+                              />
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  </ScrollReveal>
-                );
-              })}
+                      </ScrollReveal>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Flyer image -- desktop only */}
+              <div className="hidden md:block shrink-0" style={{ width: 280 }}>
+                <Image
+                  src="/mm-maart-2026.png"
+                  alt={lang === "nl" ? "Maandmenu maart 2026" : "Monthly menu March 2026"}
+                  width={280}
+                  height={396}
+                  className="rounded-sm"
+                  style={{
+                    border: "1px solid rgba(245,240,232,0.15)",
+                  }}
+                />
+              </div>
             </div>
           </div>
         </section>

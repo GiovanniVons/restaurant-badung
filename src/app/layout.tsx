@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import Script from "next/script";
 import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -12,6 +11,8 @@ import { AnnouncementBanner } from "@/components/AnnouncementBanner";
 import { RestaurantJsonLd } from "@/components/JsonLd";
 import { CartDrawer } from "@/components/CartDrawer";
 import { CartFab } from "@/components/CartFab";
+import { RemesaWidget } from "@/components/RemesaWidget";
+import { VonzieNexus } from "@/components/VonzieNexus";
 import { SiteChrome } from "@/components/SiteChrome";
 
 const bandoeng = localFont({
@@ -102,20 +103,14 @@ export default function RootLayout({
             </SiteChrome>
           </CartProvider>
         </LanguageProvider>
-        {/* Vonzie Nexus Cookie Consent */}
-        <Script
-          src="https://atshvftlpuvtnredbjgc.supabase.co/functions/v1/widget?p=1074dee1-e7dd-4e0a-b03a-da6c57347ec4"
-          strategy="afterInteractive"
-        />
-        {/* Remesa Reservation Widget */}
-        <Script
-          src="https://remesa.vonzie.app/remesa-widget.js"
-          strategy="afterInteractive"
-          data-slug="restaurant-bandung"
-          data-color="#E8403A"
-          data-text="Reserveer"
-          data-lang="nl"
-        />
+        {/* Vonzie Nexus Cookie Consent -- hidden on /start */}
+        <Suspense>
+          <VonzieNexus />
+        </Suspense>
+        {/* Remesa Reservation Widget -- hidden on ordering pages */}
+        <Suspense>
+          <RemesaWidget />
+        </Suspense>
       </body>
     </html>
   );

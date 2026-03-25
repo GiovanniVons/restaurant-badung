@@ -5,6 +5,6 @@ import type { ReactNode } from "react";
 
 export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  if (pathname === "/pitch") return null;
+  if (pathname === "/start") return null;
   return <>{children}</>;
 }

@@ -81,7 +81,7 @@ export function OpenClosedRibbon() {
 
   return (
     <div
-      className="py-3 text-center"
+      className="py-3 px-6 text-center"
       style={{
         backgroundColor: "var(--ribbon-bg)",
         color: "var(--ribbon-text)",
@@ -90,9 +90,9 @@ export function OpenClosedRibbon() {
         letterSpacing: "var(--tracking-wider)",
       }}
     >
-      <div className="flex items-center justify-center gap-2">
+      <div className="inline-flex items-center justify-center gap-2 flex-wrap">
         <span
-          className="inline-block w-2 h-2 rounded-full"
+          className="inline-block w-2 h-2 rounded-full shrink-0"
           style={{
             backgroundColor: dotColor,
             boxShadow: info.status === "open" ? `0 0 6px ${dotColor}` : "none",

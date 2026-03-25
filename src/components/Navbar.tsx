@@ -31,6 +31,14 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Sync --nav-offset CSS variable so sticky elements (menu nav) follow
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--nav-offset",
+      hidden ? "0px" : "var(--header-height-desktop)"
+    );
+  }, [hidden]);
+
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
 
